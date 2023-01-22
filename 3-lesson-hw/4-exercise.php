@@ -1,14 +1,15 @@
 <?php
 
-//https://www.urya.ru/upload/goods/bg280188708.jpg - правило брал отсюда
+//числительные окончания
 function wordEndChanging(int $count, string $fstForm='none',  string $scdForm='none', string $trdForm='none'){
     if($count > 0){
         $count = (string) $count;
         $strLenght = strlen($count) - 1;
-        if($count == '1' || $count[$strLenght] == '1' && $count != '11'){
+
+        if($count == '1' || $count[$strLenght] == '1' && $count != '11' && $count[$strLenght] == '1' ){
             return $count." ".$fstForm;
         }
-        else if($count[$strLenght - 1] != "1" && $count[$strLenght] == '2'|| $count[$strLenght] == '3'|| $count[$strLenght] == '4' ){
+        else if($count[$strLenght - 1] !== "1" && (int)($count[$strLenght]) > 1 && $count[$strLenght] == '2' || $count[$strLenght] == '3'  || $count[$strLenght] == '4'){
             return $count." ".$scdForm;
         }
         else{
@@ -20,4 +21,5 @@ function wordEndChanging(int $count, string $fstForm='none',  string $scdForm='n
     }
 
 }
-print_r(wordEndChanging(-1,"Миксер","Mиксера","Миксеров"));
+
+print_r(wordEndChanging(1123,"Миксер","Mиксера","Миксеров"));
