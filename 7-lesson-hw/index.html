@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="src/styles.css">
+    <title>Test html</title>
+</head>
+<body>
+    <div class="form-box one">
+        <form action="src/index.php" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" value="Photo name">
+            <input type="file" name="photo" class="file-input">
+          
+            <input type="submit" value="Submit">        
+        </form>
+    </div>
+    <div class="form-box two"> 
+        <form action="src/indexs.php" method="POST" enctype="multipart/form-data">
+            <input type="number" name="count" value="">
+            <select size="1" required name="currencyOne" > 
+                <option disabled>Валюта 1</option>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="byn">BYN</option>  
+            </select>
+            <select size="1" required name="currencyTwo" > 
+                <option disabled>Валюта 2</option>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="byn">BYN</option>  
+            </select>
+            <input type="submit" value="Submit"> 
+        </form>
+    </div>
+    
+</body>
+</html>
