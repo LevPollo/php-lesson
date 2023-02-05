@@ -3,66 +3,64 @@
 
 $year = 1994;
 
-function beastDeterminer(int $year){
+function beastDeterminer(int $year)
+{
     $uBeast = 'none';
     $play = false;
-   do{
-        switch ($year){
-            case 1900:
+    do {
+        switch ($year % 12) {
+            case 4:
                 $uBeast = 'rat';
                 $play = true;
                 break;
-            case 1901:
+            case 5:
                 $uBeast = 'bull';
                 $play = true;
                 break;
-            case 1902:
+            case 6:
                 $uBeast = 'tiger';
                 $play = true;
                 break;
-            case 1903:
+            case 7:
                 $uBeast = 'rabbit';
                 $play = true;
                 break;
-            case 1904:
+            case 8:
                 $uBeast = 'dragon';
                 $play = true;
                 break;
-            case 1905:
+            case 9:
                 $uBeast = 'snake';
                 $play = true;
                 break;
-            case 1906:
+            case 10:
                 $uBeast = 'horse';
                 $play = true;
                 break;
-            case 1907:
+            case 11:
                 $uBeast = 'goat';
                 $play = true;
                 break;
-            case 1908:
+            case 0:
                 $uBeast = 'monkey';
                 $play = true;
                 break;
-            case 1909:
+            case 1:
                 $uBeast = 'kfc';
                 $play = true;
                 break;
-            case 1910:
+            case 2:
                 $uBeast = 'dog';
                 $play = true;
                 break;
-            case 1911:
+            case 3:
                 $uBeast = 'peppa';
                 $play = true;
                 break;
-            default:
-                $uBeast = 'none';
-                $year -= 12;
-                break;
+
         }
 
-    }while(!$play);
+    } while (!$play);
     return $uBeast;
 }
 

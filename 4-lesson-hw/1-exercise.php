@@ -4,13 +4,13 @@
 
 $link = 'https://test.com';
 
-function linkChenger(string $link){
-    if (str_starts_with($link,"https")){
-        return "is true";
-    }
-    else{
-        return "isn't true";
+function protectionLinkCheck(string $link)
+{
+    if (str_starts_with($link, "https")) {
+        return true;
+    } else {
+        return false;
     }
 }
 
-print_r(linkChenger($link));
+print_r(protectionLinkCheck($link));

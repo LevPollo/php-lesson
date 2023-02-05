@@ -3,24 +3,40 @@
 $truePass = 'priveT12!';
 $falsePass = 'pepega';
 
-function passCheck($pass){
+function passCheck($pass)
+{
     $passArr = str_split($pass);
     $abc = 'qwertyuiopasdfghjklzxcvbnm';
     $symb = '!@#$%^&*()_+~{}[]":?><;-=1234567890';
-    $arrAbc = str_split($abc);
-    $arrSymb = str_split($symb);
-    $points = ['letter'=>false,'letterUp'=>false,'symbols'=>false];
 
-    foreach ($passArr as $key) {
-        foreach ($arrAbc as $item) {
-            ($key == $item) ? $points['letter'] = true:false;
-            (($key == strtoupper($item))) ? $points['letterUp'] = true:false;
+    $isValidLength = false;
+    $isValidUpperCase = false;
+    $isValidLowerCase = false;
+    $isValidSymbol = false;
+
+    foreach ($passArr as $letter) {
+        if (str_contains($abc, $letter)) {
+
+            $isValidLowerCase = true;
         }
-        foreach ($arrSymb as $item){
-            ($key == $item) ? $points['symbols'] = true:false;
+
+        if (str_contains($symb, $letter)) {
+
+            $isValidSymbol = true;
         }
+        if (str_contains(strtoupper($abc), $letter)) {
+
+            $isValidUpperCase = true;
+        }
+        if (count($passArr) > 8) {
+
+            $isValidLength = true;
+        }
+
     }
-    return ($points['letter'] == true && $points['letterUp'] == true && $points['symbols'] == true && count($passArr) > 8);
+
+
+    return ($isValidLength == true && $isValidSymbol == true && $isValidLowerCase == true && $isValidUpperCase == true);
 }
 
 print_r(passCheck($truePass));
