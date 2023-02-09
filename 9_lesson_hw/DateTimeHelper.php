@@ -6,7 +6,7 @@ namespace lesson_hw;
 
 class DateTimeHelper
 {
-
+    
     private int $month;
     private int $day;
     private string $date;
