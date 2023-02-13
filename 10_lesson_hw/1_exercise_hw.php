@@ -11,11 +11,11 @@ print_r($myArray);
 
 $jsonWriter = new JSONWriter();
 $jsonWriter->generateContent($myArray);
-$jsonWriter->write('newJson.json');
+$jsonWriter->write('newJson');
 
 $csvWriter = new CSVWriter();
 $csvWriter->generateContent($myArray);
-$csvWriter->write('newCsv.csv');
+$csvWriter->write('newCsv');
 
 
 

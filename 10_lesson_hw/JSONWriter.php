@@ -11,17 +11,13 @@ class JSONWriter implements Writer
 
 
 
-    public function write($file)
+    public function write($fileName)
     {
-            // TODO: Implement write() method.
-        file_put_contents($file,$this->json,LOCK_EX);
-
+        file_put_contents($fileName.".json",$this->json,LOCK_EX);
     }
     public function generateContent($array)
     {
-
         $this->json = json_encode($array);
-        // TODO: Implement generateContent() method.
     }
 }
 

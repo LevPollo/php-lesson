@@ -1,54 +1,52 @@
-<?
+<?php
+
+//проверить файл на формат
+//проверить имя файла на ошибки
+//проверить совпадения на похожие имена
+//загрузить файл
+
 
 $dir = '/upload/';
-$photoArr = [];
-$newPhotoName = $_POST['name'];
-$f = scandir($_SERVER['DOCUMENT_ROOT'] . $dir);
-preg_match('/(.png|.jpg)$/', $_FILES['photo']['name'],$match);
-$photoType = $match[0];
-$sucCheck = false;
+$newFileName = $_POST['name'];
+$oldFileName = $_FILES['photo']['name'];
 
 
-//для себя
-foreach ($f as $file){
-    // если файл имеет .png добавить массив файлов
-    if(preg_match('/(.png|.jpg)$/', $file) ){            
-        $photoArr[] = preg_replace('/(\.)\1/','',$file);       
-    }
+$formatReg = '/\.(jpe?g|png|ico|gif|tiff|webp|eps|svg)$/i';
+$nameReg = '/^[a-zA-Z0-9-,]+$/';
+
+
+//проверка формата
+$isValidName = preg_match($nameReg,$newFileName);
+//проверка на символы в имени
+$isValidFormat = preg_match($formatReg,$oldFileName,$matches);
+//запись формата
+$format = $matches[0];
+
+
+//если проверка формата и имени прошла успешна и такого файла нет
+if($isValidFormat && $isValidName && !file_exists('..'.$dir.$newFileName.$format)){
+    move_uploaded_file($_FILES['photo']['tmp_name'], '..'.$dir.$newFileName.$format);
+    echo 'This name is free';
+}
+else{
+    echo "Incorrect value";
 }
 
 
-// проверка на наличие объектов в массиве файлов
-switch(count($photoArr) == 0){
-    case true:
-        // если их нет, создать
-        $sucCheck = true;
-    case false:
-        // если есть, пройтись по массиву и искать совпадения в названиях
-        foreach ($photoArr as $key => $name){    
-            if (preg_replace('/(.png|.jpg)$/',"",$name) == $_POST['name']){
-                //выводит ошибку совпадения имени
-                print_r('A photo with this name already exist');
-                //можно конечно и переименовать
-                $sucCheck = false; 
-                break;
-            } 
-            else{
-                $sucCheck = true;               
-            }
-        }  
-        
-}
+//P.S. Под новым именем файла я имею ввиду имя файла без расширения, мол то, что будет видеть сам пользователь в галерее своих фоток,
+//  Например он сделал фото и её имя автоматом проставляется камерой, чтобы там небыло крокозябр ->
+// -> пользователь как бы обзывает фото при загрузке. (я понимаю, что лучше для этого создать класс с отдельной переменной),
+// но в этом примере я пытался условно имулировать этот процесс на изученной теме.
 
 
 
 
-//проверяем загрузку файла на ошибки и отсутсвие совпадений в списке
-if($_FILES['photo']['error'] == 0 && $sucCheck){
 
-    move_uploaded_file($_FILES['photo']['tmp_name'], '../upload/'.preg_replace('/^../' ," ",$newPhotoName).$photoType);
-    print_r("Your photo '" . $newPhotoName . "' is uploaded");
-}
+
+
+
+
+
 
 
 ?>

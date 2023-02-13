@@ -9,24 +9,29 @@ class CSVWriter implements Writer
 
 
 
-    public function write($file)
+    public function write($fileName)
     {
             // TODO: Implement write() method.
-        file_put_contents($file,$this->csv,LOCK_EX);
+        file_put_contents($fileName.".csv",$this->csv,LOCK_EX);
 
     }
     public function generateContent($array)
     {
+        $arrayKeys = array_keys($array[0]);
+        $this->csv = implode(",",$arrayKeys).PHP_EOL;
 
+        // проходимся по каждому вложенному массиву
         foreach ($array as $fields){
-
-            $this->csv .= implode(',', $fields) . "\n";
+            // для каждого элемента вложенного масива(вдруг элемента не 3);
+            $this->csv.= implode(",",$fields).PHP_EOL;
         }
-        // TODO: Implement generateContent() method.
+        print_r($this->csv);
     }
 }
-$array = [
-    [ 'Name', 'Age', 'Country' ],
-    [ 'Dio', '121', 'TUK' ],
-    [ 'Jotaro', '40', 'JP' ],
+$testArray = [
+    [ 'Name'=>'Dio', 'Age'=>'121', 'Country'=>'UK','SA'=>'Dio', 'DS'=>'121', 'S'=>'UK'],
+    [ 'Name'=>'Dio', 'Age'=>'121', 'Country'=>'UK','SA'=>'Dio', 'DS'=>'121', 'S'=>'UK'],
+    [ 'Name'=>'Dio', 'Age'=>'121', 'Country'=>'UK','SA'=>'Dio', 'DS'=>'121', 'S'=>'UK'],
+
 ];
+

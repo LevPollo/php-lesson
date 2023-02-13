@@ -1,12 +1,10 @@
 <?php
 
 $myArray = [
-    [ 'Name', 'Age', 'Country' ],
-    [ 'Dio', '121', 'TUK' ],
-    [ 'Jotaro', '40', 'JP' ],
+    [ 'Name'=>'Dio', 'Age'=>'121', 'Country'=>'UK'],
+    [ 'Name'=>'Jotaro', 'Age'=>'40', 'Country'=>'JP'],
+    [ 'Name'=>'Motoko', 'Age'=>'46', 'Country'=>'JP'],
+
 ];
 
-$varTest = 'fd';
-function fasad(){
-}
 ?>
